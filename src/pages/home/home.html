@@ -1,42 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      <img src="../../assets/icon/favicon.ico"> Pharmacopeia
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <br><hr><br>
   <ion-list>
     <button ion-item *ngFor="let drug of drugs" (click)="openDescription(drug)">
       {{ drug.name }}
     </button>
   </ion-list>
-  <br><hr><br>
-  <dl>
-    <dt>
-      Acetaminophen/Paracetamol (Tylenol)
-    </dt>
-    <dd>
-      Oral/Rectal Dosing<br>
-      <br> Infants/Children:
-      <br> PO: 10-15 mg/kg/dose; every 4-6 hours prn<br> PR: 25-40 mg/kg/dose; every 8 hours prn<br> MAX: 90 mg/kg/day<br>
-      <br> Children >12 years/Adults:<br> If > 50 kg, otherwise use per kg doing above)<br> PO: 650-1000 mg/dose; every
-      4-6 hours prn<br> PR: 1300 mg/dose; every 4-6 hours prn<br> MAX: 4 grams/day<br>
-    </dd>
-
-    <dt>Clonidine (Catapres)</dt>
-    <dd>
-      Infants/Children/Adults:<br>
-      IV: 1-2 micrograms/kg/dose; x1 as a single intraoperative dose<br>
-      <br>
-      * NOTE: Not indicated in patient in whom minimal or no postoperative pain is expected, such
-      as cleft lip repair with infraorbital block.
-    </dd>
-  </dl>
 </ion-content>
