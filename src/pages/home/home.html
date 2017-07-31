@@ -12,6 +12,12 @@
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
   </p>
   <br><hr><br>
+  <ion-list>
+    <button ion-item *ngFor="let drug of drugs" (click)="openDescription(drug)">
+      {{ drug.name }}
+    </button>
+  </ion-list>
+  <br><hr><br>
   <dl>
     <dt>
       Acetaminophen/Paracetamol (Tylenol)
