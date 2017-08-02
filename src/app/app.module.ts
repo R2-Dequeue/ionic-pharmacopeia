@@ -8,6 +8,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DrugDescriptionPage } from '../pages/drug-description/drug-description';
 
+import { firebaseConfig } from '../assets/authenticate';
+export { firebaseConfig };
+
 @NgModule({
   declarations: [
     MyApp,
