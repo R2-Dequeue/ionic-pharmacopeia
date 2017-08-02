@@ -1,6 +1,10 @@
 page-drug-description {
   ion-content {
-    white-space: pre-line;
-    font-size: 125%;
+    font-size: 110%;
+  }
+
+  .uppercase
+  {
+    text-transform: uppercase;
   }
 }
