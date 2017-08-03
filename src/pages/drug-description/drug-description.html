@@ -7,12 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title> {{ drug.name }} </ion-title>
+    <ion-title> {{ drug.title }} </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div [innerHTML]="drug.description"></div>
+  <div [innerHTML]="drug.data"></div>
 </ion-content>

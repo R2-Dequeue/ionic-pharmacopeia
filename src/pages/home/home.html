@@ -8,8 +8,8 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let drug of drugs" (click)="openDescription(drug)">
-      {{ drug.name }}
+    <button ion-item *ngFor="let datum of pharmData | async" (click)="openDescription(datum)">
+      {{ datum.title }}
     </button>
   </ion-list>
 </ion-content>
