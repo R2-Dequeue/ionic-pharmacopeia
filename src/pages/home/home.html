@@ -1,12 +1,15 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      <img src="../../assets/icon/favicon.ico"> Pharmacopeia
+      <!-- <img src="../../assets/img/opsmile-globe-icon.png" style="width: 32px; height: 32px; vertical-align: middle;">&emsp; -->Pharmacopeia
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-list-header>
+    Analgesics
+  </ion-list-header>
   <ion-list>
     <button ion-item *ngFor="let datum of pharmData | async" (click)="openDescription(datum)">
       {{ datum.title }}
