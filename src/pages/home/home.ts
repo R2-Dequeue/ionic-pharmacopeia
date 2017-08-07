@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 
-import { DrugDescriptionPage } from '../drug-description/drug-description';
+import { TreeContentPage } from '../tree-content/tree-content';
 
 @Component({
   selector: 'page-home',
@@ -11,14 +11,16 @@ import { DrugDescriptionPage } from '../drug-description/drug-description';
 })
 export class HomePage {
 
-  drugs: any = [];
-  pharmData: FirebaseListObservable<any[]>;
+  pharmObject: FirebaseObjectObservable<any>;
+  data = {};
 
   constructor(public db: AngularFireDatabase, public navCtrl: NavController) {
-    this.pharmData = db.list('/pharmacopeia/chapters/0/sections');
+    this.pharmObject = db.object('/pharmacopeia');
+    this.pharmObject.$ref.on('value', snapshot => this.data = snapshot.val());
+    // enable button here
   }
 
-  openDescription(drug) {
-    this.navCtrl.push(DrugDescriptionPage, { drug: drug });
+  openPharmacopeia() {
+    this.navCtrl.push(TreeContentPage, { content: this.data });
   }
 }

@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { DrugDescriptionPage } from '../pages/drug-description/drug-description';
+import { TreeContentPage } from '../pages/tree-content/tree-content';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -18,7 +18,7 @@ export { firebaseConfig };
   declarations: [
     MyApp,
     HomePage,
-    DrugDescriptionPage
+    TreeContentPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,7 @@ export { firebaseConfig };
   entryComponents: [
     MyApp,
     HomePage,
-    DrugDescriptionPage // Has to be declared here AND `declarations`
+    TreeContentPage // Has to be declared here AND `declarations`
   ],
   providers: [
     StatusBar,

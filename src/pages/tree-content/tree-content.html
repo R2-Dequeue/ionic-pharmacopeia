@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>
+      <img src="assets/img/opsmile-globe-icon.png" style="width: 24px; height: 24px; vertical-align: middle;">&ensp;
+      {{ title }}
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div *ngIf="data" [innerHTML]="data"></div>
+  <ion-list *ngIf="items">
+    <button ion-item *ngFor="let item of items" (click)="descend(item)">
+      {{ item.title }}
+    </button>
+  </ion-list>
+
+</ion-content>
