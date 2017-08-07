@@ -3,7 +3,7 @@
 var firebase = require('firebase');
 
 // Initialize Firebase
-var firebaseConfig = require('../src/assets/authenticate.ts');
+require('../src/assets/authenticate.js');
 firebase.initializeApp(firebaseConfig);
 
 
@@ -38,10 +38,10 @@ function returnDrugs()
 {
   return {
     title: 'Pharmacopeia',
-    chapters: [
+    items: [
       {
         title: 'Analgesics',
-        sections: [
+        items: [
           {
             title: 'Acetaminophen/Paracetamol',// (Tylenol)',
             data: `
@@ -67,7 +67,7 @@ function returnDrugs()
               <b>MAX: 75 mg/kg/day</b>`
           },
           {
-            title: 'Clonidine (Catapres)',
+            title: 'Clonidine',
             data: `
               <b>Infants/Children/Adults:</b><br>
               IV: 1-2 micrograms/kg/dose; x1 as a single intraoperative dose<br>
@@ -75,7 +75,7 @@ function returnDrugs()
               * NOTE: Not indicated in patients in whom minimal or no postoperative pain is expected, such as cleft lip repair with infraorbital block.`
           },
           {
-            title: 'Fentanyl (Sublimaze)',
+            title: 'Fentanyl',
             data: `
               <b>Infants/Children/Adults:</b><br>
               IV: 0.5-1.0 micrograms/kg/dose; may repeat after 5-10 minutes<br>

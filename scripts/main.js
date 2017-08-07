@@ -3,7 +3,7 @@
 var firebase = require('firebase');
 
 // Initialize Firebase
-var firebaseConfig = require('../src/assets/authenticate.ts');
+require('../src/assets/authenticate.js');
 firebase.initializeApp(firebaseConfig);
 
 console.log('Starting');
