@@ -15,9 +15,10 @@ console.log('Starting');
 
 var dbRef = firebase.database().ref('/pharmacopeia');//.child('some-text');
 
-dbRef.set(returnDrugs())
+dbRef.set(drugs)
   .then(function () { console.log('Success :3'); process.exit(); })
   .catch(function (error) { console.log('Failure D:' + '\n' + error); process.exit(); });
+
 
 
 
@@ -36,7 +37,7 @@ subparagraph
 
 function returnDrugs()
 {
-  return {
+  var drugs = {
     title: 'Pharmacopeia',
     items: [
       {
@@ -149,6 +150,24 @@ function returnDrugs()
       }
     ]
   };
+
+  return r(drugs);
+}
+
+function r(node) {
+  if (typeof node['items'] !== 'undefined') {
+    node.items.forEach(function (e) { r(e); });
+  }
+
+  if (typeof node['data'] !== 'undefined') {
+    node.data = node.data.replace(/^\s+|\s+$/gm, '').trim();
+  }
+
+  if (typeof node['title'] !== 'undefined') {
+    node.title = node.title.replace(/^\s+|\s+$/gm, '').trim();
+  }
+
+  return node;
 }
 
 /*
