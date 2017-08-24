@@ -20,17 +20,11 @@ export class TreeContentPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.title = navParams.data['content']['title'];
     this.items = navParams.data['content']['items'];
-    this.data = navParams.data['content']['data'];
-    
-    //if (typeof p['items'] !== 'undefined')
+    this.data = navParams.data['content']['dataHTML'];
   }
 
   descend(item) {
     this.navCtrl.push(TreeContentPage, { content: item });
-  }
-
-  ionViewDidLoad() {
-    //console.log('ionViewDidLoad TreeContentPage');
   }
 
 }

@@ -1,10 +1,14 @@
 page-tree-content {
-  ion-content {
+  /* ion-content {
     font-size: 120%;
-  }
+  } */
 
   .uppercase
   {
     text-transform: uppercase;
+  }
+
+  p {
+    margin: 0px;
   }
 }

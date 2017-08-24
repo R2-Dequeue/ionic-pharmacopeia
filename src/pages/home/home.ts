@@ -15,7 +15,7 @@ export class HomePage {
   data = {};
 
   constructor(public db: AngularFireDatabase, public navCtrl: NavController) {
-    this.pharmObject = db.object('/pharmacopeia');
+    this.pharmObject = db.object('/pharm_test_3/documents');
     this.pharmObject.$ref.on('value', snapshot => this.data = snapshot.val());
     // enable button here
   }

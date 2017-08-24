@@ -93,60 +93,79 @@ function returnDrugs()
       },
       {
         title: 'Sedatives/Intravenous Anesthetics',
+        items: []
       },
       {
         title: 'Local Anesthetics',
+        items: []
       },
       {
         title: 'Anticonvulsants',
+        items: []
       },
       {
         title: 'Antiemetics',
+        items: []
       },
       {
         title: 'Antifibrinolytics',
+        items: []
       },
       {
         title: 'Antimicrobials',
+        items: []
       },
       {
         title: 'Antipruritics',
+        items: []
       },
       {
         title: 'Antipyretics',
+        items: []
       },
       {
         title: 'Cardiovascular',
+        items: []
       },
       {
         title: 'Diuretics',
+        items: []
       },
       {
         title: 'Anesthesia Inhalent',
+        items: []
       },
       {
         title: 'Neuromuscular Blockers',
+        items: []
       },
       {
         title: 'Post-exposure Prophylaxis',
+        items: []
       },
       {
         title: 'Respiratory/Asthma',
+        items: []
       },
       {
         title: 'Resuscitation/Patient Code Sheet',
+        items: []
       },
       {
         title: 'Steroids',
+        items: []
       },
       {
         title: 'Topicals',
+        items: []
       },
       {
         title: 'Toxicology/Reversal Agents',
+        items: []
       },
       {
-        title: 'Miscellaneous'
+        title: 'Miscellaneous',
+        items: []
       }
     ]
   };
