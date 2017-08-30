@@ -6,7 +6,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { SettingsPage } from '../pages/settings/settings';
+
 import { TreeContentPage } from '../pages/tree-content/tree-content';
+import { SearchPage } from '../pages/search/search';
+import { FavoritesPage } from '../pages/favorites/favorites';
+
+import { TabsPage } from '../pages/tabs/tabs';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -18,7 +24,11 @@ export { firebaseConfig };
   declarations: [
     MyApp,
     HomePage,
-    TreeContentPage
+    SettingsPage,
+    TreeContentPage,
+    SearchPage,
+    FavoritesPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +40,11 @@ export { firebaseConfig };
   entryComponents: [
     MyApp,
     HomePage,
-    TreeContentPage // Has to be declared here AND `declarations`
+    SettingsPage,
+    TreeContentPage,
+    SearchPage,
+    FavoritesPage,
+    TabsPage // Has to be declared here AND `declarations`
   ],
   providers: [
     StatusBar,

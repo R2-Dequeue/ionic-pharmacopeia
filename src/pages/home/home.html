@@ -3,15 +3,20 @@
   <ion-navbar>
     <ion-title>
       <img src="assets/img/opsmile-globe-icon.png" style="width: 24px; height: 24px; vertical-align: middle;">&ensp;
-      Documents
+      Library
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="navSettingsPage();">
+        <ion-icon name='settings'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
 
-  <ion-card (click)="openPharmacopeia()">
+  <ion-card (click)="navContent('pharmacopeia')">
     <ion-card-content>
       <ion-card-title style="font-weight: bold">Pharmacopeia</ion-card-title>
       <img src="assets/img/Surgery.jpg" />

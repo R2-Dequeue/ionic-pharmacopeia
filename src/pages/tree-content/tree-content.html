@@ -2,9 +2,13 @@
 
   <ion-navbar>
     <ion-title>
-      <img src="assets/img/opsmile-globe-icon.png" style="width: 24px; height: 24px; vertical-align: middle;">&ensp;
       {{ title }}
     </ion-title>
+    <ion-buttons *ngIf="data" end>
+      <button ion-button icon-only>
+        <ion-icon name='star-outline'></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
