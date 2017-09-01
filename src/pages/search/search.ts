@@ -21,6 +21,8 @@ export class SearchPage {
 
     if (val != '')
       this.items.push(val);
+
+    //this.items = this.items.filter((item) => { return item.toLowerCase().includes(val.toLowerCase()); });
   }
 
   ionViewDidLoad() {

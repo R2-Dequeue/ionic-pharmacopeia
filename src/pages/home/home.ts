@@ -7,6 +7,8 @@ import { SettingsPage } from '../settings/settings';
 //import { TreeContentPage } from '../tree-content/tree-content';
 import { TabsPage } from '../tabs/tabs';
 
+import { ContentProvider } from '../../providers/content/content';
+
 //@IonicPage()
 @Component({
   selector: 'page-home',
@@ -18,7 +20,7 @@ export class HomePage {
   data = {};
 
   //constructor(public navCtrl: NavController, public navParams: NavParams) {
-  constructor(public db: AngularFireDatabase, public navCtrl: NavController) {
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public content: ContentProvider) {
     this.pharmObject = db.object('/documents/pharmacopeia');
     this.pharmObject.$ref.on('value', snapshot => this.data = snapshot.val());
     // enable button here

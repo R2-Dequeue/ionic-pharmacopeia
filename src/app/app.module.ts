@@ -18,6 +18,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { firebaseConfig } from '../assets/authenticate';
+import { ContentProvider } from '../providers/content/content';
 export { firebaseConfig };
 
 @NgModule({
@@ -49,7 +50,8 @@ export { firebaseConfig };
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ContentProvider
   ]
 })
 export class AppModule {}
