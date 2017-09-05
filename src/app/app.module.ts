@@ -15,9 +15,6 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-
 import { firebaseConfig } from '../assets/authenticate';
 import { ContentProvider } from '../providers/content/content';
 export { firebaseConfig };
@@ -35,9 +32,7 @@ export { firebaseConfig };
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

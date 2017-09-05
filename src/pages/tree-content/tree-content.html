@@ -4,7 +4,7 @@
     <ion-title>
       {{ title }}
     </ion-title>
-    <ion-buttons *ngIf="!data" start>
+    <ion-buttons *ngIf="showHome" start>
       <button ion-button icon-only (click)="navHomePage();">
         <ion-icon name='home'></ion-icon>
       </button>
@@ -21,12 +21,12 @@
 
 <ion-content padding>
 
-  <button (click)="logObject()" ion-button>Log</button>
   <div *ngIf="data" class="page-data" [innerHTML]="data"></div>
   <ion-list *ngIf="items">
     <button ion-item *ngFor="let item of items" (click)="descend(item)">
       {{ item.title }}
     </button>
   </ion-list>
+  <button (click)="logObject()" ion-button>Log</button>
 
 </ion-content>

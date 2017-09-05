@@ -9,4 +9,8 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <button ion-item *ngFor="let fav of favorites; let i = index" (click)="navFavorite(i);">{{ fav.name }}</button>
+  </ion-list>
+
 </ion-content>

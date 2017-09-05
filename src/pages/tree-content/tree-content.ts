@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
 
 import { FirebaseObjectObservable } from 'angularfire2/database';
 
 import { ContentProvider } from '../../providers/content/content';
+
+import { HomePage } from '../home/home';
 
 //@IonicPage()
 @Component({
@@ -21,20 +22,25 @@ export class TreeContentPage {
   data = undefined;
 
   private favoriteStatusIcon: String = 'star-outline';
+  private showHome: Boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public content: ContentProvider, private storage: Storage) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public content: ContentProvider) {
     this.title = navParams.data['content']['title'];
     this.items = navParams.data['content']['items'];
     this.data = navParams.data['content']['dataHTML'];
 
-    //storage.ready().then(() => console.log('Storage driver being used: ' + storage.driver));// `asyncStorage` on pc
+    this.showHome = (navCtrl.length() === 0);
   }
 
   descend(item) {
     this.navCtrl.push(TreeContentPage, { content: item });
   }
 
-  navHomePage() {}
+  navHomePage() {
+    this.navCtrl.setRoot(HomePage);
+  }
 
   favoriteThisPage() {
     if (this.favoriteStatusIcon === 'star-outline') {
@@ -45,7 +51,8 @@ export class TreeContentPage {
   }
 
   logObject() {
-    console.log(this.navCtrl);
+    //console.log(this.navCtrl);
+    this.content.logNavStatus(this.navCtrl);
   }
 
 }

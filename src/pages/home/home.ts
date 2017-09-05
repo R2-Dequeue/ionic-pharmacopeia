@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { /* IonicPage,  */NavController } from 'ionic-angular';
 
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
-
 import { SettingsPage } from '../settings/settings';
 import { TabsPage } from '../tabs/tabs';
 
@@ -15,7 +13,6 @@ import { ContentProvider } from '../../providers/content/content';
 })
 export class HomePage {
 
-  pharmObject: FirebaseObjectObservable<any>;
   data = {};
 
   private documents: any = [
@@ -31,10 +28,7 @@ export class HomePage {
     }
   ];
 
-  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public content: ContentProvider) {
-    this.pharmObject = db.object('/documents/pharmacopeia');
-    this.pharmObject.$ref.on('value', snapshot => this.data = snapshot.val());
-  }
+  constructor(public navCtrl: NavController, public content: ContentProvider) {}
 
   navContent(id) {
     if (id === 'pharmacopeia')
