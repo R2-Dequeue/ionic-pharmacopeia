@@ -4,9 +4,14 @@
     <ion-title>
       {{ title }}
     </ion-title>
+    <ion-buttons *ngIf="!data" start>
+      <button ion-button icon-only (click)="navHomePage();">
+        <ion-icon name='home'></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-buttons *ngIf="data" end>
-      <button ion-button icon-only>
-        <ion-icon name='star-outline'></ion-icon>
+      <button ion-button icon-only (click)="favoriteThisPage();">
+        <ion-icon [name]="favoriteStatusIcon"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

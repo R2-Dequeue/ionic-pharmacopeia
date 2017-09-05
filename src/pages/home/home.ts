@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { /* IonicPage,  */NavController/*, NavParams*/ } from 'ionic-angular';
+import { /* IonicPage,  */NavController } from 'ionic-angular';
 
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 
 import { SettingsPage } from '../settings/settings';
-//import { TreeContentPage } from '../tree-content/tree-content';
 import { TabsPage } from '../tabs/tabs';
 
 import { ContentProvider } from '../../providers/content/content';
@@ -19,16 +18,27 @@ export class HomePage {
   pharmObject: FirebaseObjectObservable<any>;
   data = {};
 
-  //constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private documents: any = [
+    {
+      title:  'Pharmacopeia',
+      id:     'pharmacopeia',
+      image:  'assets/img/Surgery.jpg'
+    },
+    {
+      title:  'Resource Manual',
+      id:     'resource_manual',
+      image:  'assets/img/VolunteerAndPatient.jpg'
+    }
+  ];
+
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, public content: ContentProvider) {
     this.pharmObject = db.object('/documents/pharmacopeia');
     this.pharmObject.$ref.on('value', snapshot => this.data = snapshot.val());
-    // enable button here
   }
 
-  navContent() {
-    //this.navCtrl.push(TreeContentPage, { content: this.data });
-    this.navCtrl.push(TabsPage, { content: this.data });
+  navContent(id) {
+    if (id === 'pharmacopeia')
+      this.navCtrl.push(TabsPage, { content: this.data });
   }
 
   navSettingsPage() {

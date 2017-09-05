@@ -21,8 +21,6 @@ export class TabsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.contentData = navParams.data;
-
-    console.log('tabs');
   }
 
 }
