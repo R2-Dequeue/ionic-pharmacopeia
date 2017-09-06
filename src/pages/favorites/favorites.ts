@@ -12,20 +12,12 @@ import { TreeContentPage } from '../tree-content/tree-content';
 })
 export class FavoritesPage {
 
-  private favorites: any = [];
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private content: ContentProvider) {
-    this.favorites = content.getFavoriteNames();
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private content: ContentProvider) {}
 
   private navFavorite(index: number) {
-    console.log(this.favorites[index].path);
-    console.log(this.content.getNodeFromPath(this.favorites[index].path));
-    //this.navCtrl.push(TreeContentPage, { content: this.content.getNodeFromPath(this.favorites[index].path) });
+    this.navCtrl.push(TreeContentPage, {
+      content: this.content.getNodeFromPath(this.content.favorites[index].path)
+    });
   }
-
-  /* ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
-  } */
 
 }

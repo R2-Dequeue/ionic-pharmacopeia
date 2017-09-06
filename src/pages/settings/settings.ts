@@ -12,25 +12,40 @@ export class SettingsPage {
 
   public settings: any = { showBetaDocs: false };
 
+  /**
+   * 
+   * @param navCtrl 
+   * @param navParams 
+   * @param storage 
+   * 
+   * @todo Iterate over `val` and insert values into `settings'.
+   */
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     storage.ready().then(() => {
       console.log('`storage` is ready');
-      storage.get('showBetaDocs').then((val) => { this.settings.showBetaDocs = val; })
+      storage.get('settings').then((val) => {
+        console.log('`storage.get`: ');
+        console.log(val);
+
+        if (val) {
+          let parsed = JSON.parse(val);
+
+          if (parsed)
+            this.settings = parsed;
+        }
+      });
     });
   }
   
-  favorite() {
-    console.log('`showBetaDocs` when `favorite` called: ' + this.settings.showBetaDocs);
-
-    let temp: Boolean = this.settings.showBetaDocs;
-    this.storage.set('showBetaDocs', temp).then(() => {
-      this.settings.showBetaDocs = temp;
-      console.log('`showBetaDocs` after `set` called: ' + this.settings.showBetaDocs);
-    });
+  private toggleBetaDocs() {
+    this.storage.set('settings', JSON.stringify(this.settings));
   }
 
-  logSettings() {
-    this.storage.get('showBetaDocs').then((val) => { console.log('showBetaDocs: ' + val); });
+  private logSettings() {
+    this.storage.get('settings').then((val) => {
+      console.log('Settings: ');
+      console.log(val);
+    });
   }
 
 }

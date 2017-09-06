@@ -15,9 +15,7 @@ import { FavoritesPage } from '../pages/favorites/favorites';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
-import { firebaseConfig } from '../assets/authenticate';
 import { ContentProvider } from '../providers/content/content';
-export { firebaseConfig };
 
 @NgModule({
   declarations: [

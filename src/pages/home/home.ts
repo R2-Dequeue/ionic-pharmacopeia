@@ -13,8 +13,6 @@ import { ContentProvider } from '../../providers/content/content';
 })
 export class HomePage {
 
-  data = {};
-
   private documents: any = [
     {
       title:  'Pharmacopeia',
@@ -31,8 +29,10 @@ export class HomePage {
   constructor(public navCtrl: NavController, public content: ContentProvider) {}
 
   navContent(id) {
+    // Talk to ContentProvider to pull data
+    
     if (id === 'pharmacopeia')
-      this.navCtrl.push(TabsPage, { content: this.data });
+      this.navCtrl.push(TabsPage, { content: this.content.documentObject });
   }
 
   navSettingsPage() {

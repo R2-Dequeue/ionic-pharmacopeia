@@ -17,10 +17,11 @@ export class TabsPage {
   searchRoot = SearchPage;
   favoritesRoot = FavoritesPage;
 
-  contentData = {};
+  contentData = { path: '' };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.contentData = navParams.data;
+    this.contentData['path'] = '';
   }
 
 }

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
+import { Storage } from '@ionic/storage';
+
 import { firebaseConfig } from '../../assets/authenticate';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
@@ -10,7 +12,7 @@ import 'firebase/database';
 @Injectable()
 export class ContentProvider {
 
-  private favorites: any = [
+  public favorites: { name: string, path: string }[] = [
     {
       name: 'Clonidine',
       path: '/Analgesics/Clonidine'
@@ -23,26 +25,50 @@ export class ContentProvider {
 
   public documentObject: any = {};
   
-  constructor() {
+  constructor(private storage: Storage) {
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    //firebase.database().ref().
-    // firebase.database().r
-    // this.pharmObject = db.object('/documents/pharmacopeia');
-    // this.pharmObject.$ref.on('value', snapshot => this.data = snapshot.val());
+    let ref = firebase.database().ref('/documents/pharmacopeia');
+
+    ref.once('value', snapshot => this.documentObject = snapshot.val());
+
+    // Initialize Favorites
+    storage.ready().then(() => {
+      storage.get('favorites').then((val) => {
+        console.log('`storage.get`: ');
+        console.log(val);
+
+        if (val) {
+          let parsed = JSON.parse(val);
+
+          if (parsed)
+            this.favorites = parsed;
+        }
+      });
+    });
   }
 
-  public getFavoriteNames(): any {
-    return this.favorites;
-    /* let r = [];
+  public addFavoritePage(name: string, path: string) {
+    this.favorites.push({ name: name, path: path });
+    this.favorites.sort((a, b) => {
+      if (a.name < b.name)
+        return -1;
+      else if (b.name > a.name)
+        return 1;
+      else
+        return 0;
+    });
 
-    for (let fav of this.favorites)
-      r.push(fav.match(/[^\/]+$/g)[0]);
-
-    return r; */
+    this.storage.set('favorites', JSON.stringify(this.favorites));
   }
 
-  public getNodeFromPath(path: string): any {
+  public removeFavoritePage(name: string, path: string) {}
+
+  /**
+   * Returns the object representing a node in the CMS document tree
+   * @param path URL-like path that identifies a node in the CMS document tree
+   */
+    public getNodeFromPath(path: string): any {
     let pages: string[] = path.split('/').filter((o) => { return o != ''; });
     let d = this.documentObject;
 
