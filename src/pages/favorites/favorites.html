@@ -13,4 +13,6 @@
     <button ion-item *ngFor="let fav of content.favorites; let i = index" (click)="navFavorite(i);">{{ fav.name }}</button>
   </ion-list>
 
+  <button ion-button (click)="logFavorites();">Log Favorites</button>
+
 </ion-content>

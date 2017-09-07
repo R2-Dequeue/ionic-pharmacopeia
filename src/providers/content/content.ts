@@ -9,19 +9,19 @@ import { firebaseConfig } from '../../assets/authenticate';
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 
+import { TreeContentPage } from '../../pages/tree-content/tree-content';
+
 @Injectable()
 export class ContentProvider {
 
-  public favorites: { name: string, path: string }[] = [
-    {
-      name: 'Clonidine',
-      path: '/Analgesics/Clonidine'
+  public favorites: any = {
+    '/Pharmacopeia/Analgesics/Clonidine': {
+      name: 'Clonidine'
     },
-    {
+    '/Pharmacopeia/Sedatives/Lorazepam': {
       name: 'Lorazepam',
-      path: '/Sedatives/Lorazepam'
     }
-  ];
+};
 
   public documentObject: any = {};
   
@@ -34,27 +34,29 @@ export class ContentProvider {
 
     // Initialize Favorites
     storage.ready().then(() => {
-      storage.get('favorites').then((val) => {
-        console.log('`storage.get`: ');
-        console.log(val);
+      //storage.clear().then(() => {
+        storage.get('favorites').then((val) => {
+          console.log('`storage.get`: ');
+          console.log(val);
 
-        if (val) {
-          let parsed = JSON.parse(val);
+          if (val) {
+            let parsed = JSON.parse(val);
 
-          if (parsed)
-            this.favorites = parsed;
-        }
-      });
+            if (parsed)
+              this.favorites = parsed;
+          }
+        });
+      //});
     });
   }
 
   public addFavoritePage(name: string, path: string) {
     this.favorites.push({ name: name, path: path });
     this.favorites.sort((a, b) => {
-      if (a.name < b.name)
-        return -1;
-      else if (b.name > a.name)
+      if (a.name > b.name)
         return 1;
+      else if (a.name < b.name)
+        return -1;
       else
         return 0;
     });
@@ -68,7 +70,7 @@ export class ContentProvider {
    * Returns the object representing a node in the CMS document tree
    * @param path URL-like path that identifies a node in the CMS document tree
    */
-    public getNodeFromPath(path: string): any {
+  public getNodeFromPath(path: string): any {
     let pages: string[] = path.split('/').filter((o) => { return o != ''; });
     let d = this.documentObject;
 
@@ -83,6 +85,10 @@ export class ContentProvider {
     }
 
     return d;
+  }
+
+  public navPath(path: string, nav: NavController) {
+    nav.push(TreeContentPage, { content: this.getNodeFromPath(path) });
   }
 
   public logNavStatus(nav: NavController) {

@@ -28,7 +28,7 @@ export class TreeContentPage {
     this.title = navParams.data['content']['title'];
     this.items = navParams.data['content']['items'];
     this.data = navParams.data['content']['dataHTML'];
-    this.path = navParams.data['content']['path'] + '/' + this.title;
+    this.path = (navParams.data['content']['path'] || '') + '/' + this.title;
 
     this.showHome = (navCtrl.length() === 0);
   }
@@ -38,6 +38,7 @@ export class TreeContentPage {
    * @param item The tree node to display (a section or leaf/page)
    */
   descend(item) {
+    item['path'] = this.path;
     this.navCtrl.push(TreeContentPage, { content: item });
   }
 
@@ -57,13 +58,15 @@ export class TreeContentPage {
    * Save the Page as a Favorite locally and toggle the icon fill state
    */
   favoriteThisPage() {
-    if (this.favoriteStatusIcon === 'star-outline') {
+    console.log(this.path);
+
+    /* if (this.favoriteStatusIcon === 'star-outline') {
       this.content.addFavoritePage(this.title, this.path);
       this.favoriteStatusIcon = 'star';
     } else {
       this.content.removeFavoritePage(this.title, this.path);
       this.favoriteStatusIcon = 'star-outline';
-    }
+    } */
   }
 
   logObject() {

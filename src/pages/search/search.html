@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-searchbar (ionInput)="onInput($event)"></ion-searchbar><!-- <ion-title>Search</ion-title> -->
+    <ion-searchbar (ionInput)="onInput($event)"></ion-searchbar>
   </ion-navbar>
 
 </ion-header>
@@ -9,8 +9,8 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{ item }}
-    </ion-item>
+    <button ion-item *ngFor="let item of items" (click)="navPage(item)">
+      {{ item.title }}
+    </button>
   </ion-list>
 </ion-content>

@@ -20,4 +20,8 @@ export class FavoritesPage {
     });
   }
 
+  public logFavorites(): void {
+    console.log(this.content.favorites);
+  }
+
 }
