@@ -26,7 +26,7 @@ export class TreeContentPage {
     this.title = navParams.data['content']['title'];
     this.items = navParams.data['content']['items'];
     this.data = navParams.data['content']['dataHTML'];
-    this.path = (navParams.data['content']['path'] || '') + '/' + this.title;
+    this.path = (navParams.data.path || '') + '/' + this.title;
 
     this.showHome = (navCtrl.length() === 0);
 
@@ -38,8 +38,7 @@ export class TreeContentPage {
    * @param item The tree node to display (a section or leaf/page)
    */
   descend(item) {
-    item['path'] = this.path;
-    this.navCtrl.push(TreeContentPage, { content: item });
+    this.navCtrl.push(TreeContentPage, { content: item, path: this.path });
   }
 
   /**
@@ -60,8 +59,6 @@ export class TreeContentPage {
    * @todo Implement `toggleFavoritePage` method on `content`.
    */
   private toggleFavorite() {
-    console.log(this.path);
-
     if (this.favoriteStatusIcon === 'star-outline') {
       this.content.addFavoritePage(this.title, this.path);
       this.favoriteStatusIcon = 'star';
@@ -74,6 +71,7 @@ export class TreeContentPage {
   logObject() {
     console.log(this.navCtrl);
     this.content.logNavStatus(this.navCtrl);
+    console.log('Path: ' + this.path);
   }
 
 }

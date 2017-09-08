@@ -18,6 +18,7 @@ export class ContentProvider {
     '/Pharmacopeia/Analgesics/Clonidine': 'Clonidine',
     '/Pharmacopeia/Sedatives/Lorazepam':  'Lorazepam'
   }; */
+  public favArray = [];
 
   public documentObject: any = {};
   
@@ -36,8 +37,10 @@ export class ContentProvider {
         if (val) {
           let parsed = JSON.parse(val);
 
-          if (parsed)
+          if (parsed) {
             this.favorites = parsed;
+            this.calculateFavArray();
+          }
         }
       });
     });
@@ -61,8 +64,25 @@ export class ContentProvider {
     let favString = JSON.stringify(this.favorites);
 
     this.storage.ready().then(() => {
-      this.storage.set('favorites', favString);
-      console.log('Favorites: ' + favString);
+      this.storage.set('favorites', favString).then(() => {
+        this.calculateFavArray();
+        console.log('Favorites: ' + favString);
+      });
+    });
+  }
+
+  private calculateFavArray(): void {
+    this.favArray = [];
+
+    for (let key in this.favorites)
+      this.favArray.push({ name: this.favorites[key], path: key });
+    this.favArray.sort((a, b) => {
+      if (a.name > b.name)
+        return 1;
+      else if (a.name < b.name)
+        return -1;
+      else
+        return 0;
     });
   }
 

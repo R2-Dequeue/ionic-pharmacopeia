@@ -14,14 +14,14 @@ export class FavoritesPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private content: ContentProvider) {}
 
-  private navFavorite(index: number) {
-    this.navCtrl.push(TreeContentPage, {
-      content: this.content.getNodeFromPath(this.content.favorites[index].path)
-    });
+  private navFavorite(path: string) {
+    let temp = path.replace(/\/[^\/]+$/, '');
+    this.navCtrl.push(TreeContentPage, { content: this.content.getNodeFromPath(path), path: temp });
   }
 
   public logFavorites(): void {
     console.log(this.content.favorites);
+    console.log(this.content.favArray);
   }
 
 }
