@@ -10,7 +10,7 @@
       </button>
     </ion-buttons>
     <ion-buttons *ngIf="data" end>
-      <button ion-button icon-only (click)="favoriteThisPage();">
+      <button ion-button icon-only (click)="toggleFavorite();">
         <ion-icon [name]="favoriteStatusIcon"></ion-icon>
       </button>
     </ion-buttons>
@@ -21,6 +21,7 @@
 
 <ion-content padding>
 
+  {{ content.favorites[path] }}
   <div *ngIf="data" class="page-data" [innerHTML]="data"></div>
   <ion-list *ngIf="items">
     <button ion-item *ngFor="let item of items" (click)="descend(item)">

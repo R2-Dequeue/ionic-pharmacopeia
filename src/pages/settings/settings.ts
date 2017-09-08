@@ -22,11 +22,7 @@ export class SettingsPage {
    */
   constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     storage.ready().then(() => {
-      console.log('`storage` is ready');
       storage.get('settings').then((val) => {
-        console.log('`storage.get`: ');
-        console.log(val);
-
         if (val) {
           let parsed = JSON.parse(val);
 
@@ -38,14 +34,22 @@ export class SettingsPage {
   }
   
   private toggleBetaDocs() {
-    this.storage.set('settings', JSON.stringify(this.settings));
+    this.storage.ready().then(() => {
+      this.storage.set('settings', JSON.stringify(this.settings));
+    });
   }
 
   private logSettings() {
-    this.storage.get('settings').then((val) => {
-      console.log('Settings: ');
-      console.log(val);
+    this.storage.ready().then(() => {
+      this.storage.get('settings').then((val) => {
+        console.log('Settings: ');
+        console.log(val);
+      });
     });
+  }
+
+  private clearLocalStorage(): Promise<null> {
+    return this.storage.clear();
   }
 
 }

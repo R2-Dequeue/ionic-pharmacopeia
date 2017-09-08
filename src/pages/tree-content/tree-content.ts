@@ -12,8 +12,6 @@ import { HomePage } from '../home/home';
 })
 export class TreeContentPage {
 
-  pharmData = {};
-
   private title: string = '';
   private items: any = undefined;
   private data: string = undefined;
@@ -31,6 +29,8 @@ export class TreeContentPage {
     this.path = (navParams.data['content']['path'] || '') + '/' + this.title;
 
     this.showHome = (navCtrl.length() === 0);
+
+    this.favoriteStatusIcon = (content.isAFavoritePage(this.path)) ? 'star' : 'star-outline';
   }
 
   /**
@@ -56,17 +56,19 @@ export class TreeContentPage {
 
   /**
    * Save the Page as a Favorite locally and toggle the icon fill state
+   * 
+   * @todo Implement `toggleFavoritePage` method on `content`.
    */
-  favoriteThisPage() {
+  private toggleFavorite() {
     console.log(this.path);
 
-    /* if (this.favoriteStatusIcon === 'star-outline') {
+    if (this.favoriteStatusIcon === 'star-outline') {
       this.content.addFavoritePage(this.title, this.path);
       this.favoriteStatusIcon = 'star';
     } else {
       this.content.removeFavoritePage(this.title, this.path);
       this.favoriteStatusIcon = 'star-outline';
-    } */
+    }
   }
 
   logObject() {

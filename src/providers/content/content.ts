@@ -14,14 +14,10 @@ import { TreeContentPage } from '../../pages/tree-content/tree-content';
 @Injectable()
 export class ContentProvider {
 
-  public favorites: any = {
-    '/Pharmacopeia/Analgesics/Clonidine': {
-      name: 'Clonidine'
-    },
-    '/Pharmacopeia/Sedatives/Lorazepam': {
-      name: 'Lorazepam',
-    }
-};
+  public favorites: any = {};/* {
+    '/Pharmacopeia/Analgesics/Clonidine': 'Clonidine',
+    '/Pharmacopeia/Sedatives/Lorazepam':  'Lorazepam'
+  }; */
 
   public documentObject: any = {};
   
@@ -34,37 +30,41 @@ export class ContentProvider {
 
     // Initialize Favorites
     storage.ready().then(() => {
-      //storage.clear().then(() => {
-        storage.get('favorites').then((val) => {
-          console.log('`storage.get`: ');
-          console.log(val);
+      storage.get('favorites').then((val) => {
+        console.log('`storage.get`: ' + val);
 
-          if (val) {
-            let parsed = JSON.parse(val);
+        if (val) {
+          let parsed = JSON.parse(val);
 
-            if (parsed)
-              this.favorites = parsed;
-          }
-        });
-      //});
+          if (parsed)
+            this.favorites = parsed;
+        }
+      });
     });
+  }
+
+  public isAFavoritePage(path: string): boolean {
+    return !!this.favorites[path];
   }
 
   public addFavoritePage(name: string, path: string) {
-    this.favorites.push({ name: name, path: path });
-    this.favorites.sort((a, b) => {
-      if (a.name > b.name)
-        return 1;
-      else if (a.name < b.name)
-        return -1;
-      else
-        return 0;
-    });
-
-    this.storage.set('favorites', JSON.stringify(this.favorites));
+    this.favorites[path] = name;
+    this.storeFavorites();
   }
 
-  public removeFavoritePage(name: string, path: string) {}
+  public removeFavoritePage(name: string, path: string) {
+    delete this.favorites[path];
+    this.storeFavorites();
+  }
+
+  private storeFavorites() {
+    let favString = JSON.stringify(this.favorites);
+
+    this.storage.ready().then(() => {
+      this.storage.set('favorites', favString);
+      console.log('Favorites: ' + favString);
+    });
+  }
 
   /**
    * Returns the object representing a node in the CMS document tree
