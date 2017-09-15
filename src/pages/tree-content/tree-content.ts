@@ -11,7 +11,8 @@ import { HomePage } from '../home/home';
   templateUrl: 'tree-content.html',
 })
 export class TreeContentPage {
-
+  private debugComponent: boolean = false;
+  
   private title: string = '';
   private items: any = undefined;
   private data: string = undefined;

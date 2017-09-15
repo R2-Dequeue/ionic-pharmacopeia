@@ -11,6 +11,7 @@ import { TreeContentPage } from '../tree-content/tree-content';
   templateUrl: 'favorites.html',
 })
 export class FavoritesPage {
+  private debugComponent: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private content: ContentProvider) {}
 

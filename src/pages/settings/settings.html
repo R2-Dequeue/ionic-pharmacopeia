@@ -16,7 +16,9 @@
     </ion-item>
   </ion-list>
 
-  <button ion-button (click)="logSettings();">Log Settings</button><br>
-  <button ion-button (click)="clearLocalStorage();">Clear Local Storage</button>
+  <ng-container *ngIf="debugComponent">
+    <button ion-button (click)="logSettings();">Log Settings</button><br>
+    <button ion-button (click)="clearLocalStorage();">Clear Local Storage</button>
+  </ng-container>
 
 </ion-content>

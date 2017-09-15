@@ -13,6 +13,7 @@ import { TreeContentPage } from '../../pages/tree-content/tree-content';
 
 @Injectable()
 export class ContentProvider {
+  private debugComponent: boolean = false;
 
   public favorites: any = {};/* {
     '/Pharmacopeia/Analgesics/Clonidine': 'Clonidine',
@@ -32,7 +33,8 @@ export class ContentProvider {
     // Initialize Favorites
     storage.ready().then(() => {
       storage.get('favorites').then((val) => {
-        console.log('`storage.get`: ' + val);
+        if (this.debugComponent)
+          console.log('`storage.get`: ' + val);
 
         if (val) {
           let parsed = JSON.parse(val);
@@ -66,7 +68,8 @@ export class ContentProvider {
     this.storage.ready().then(() => {
       this.storage.set('favorites', favString).then(() => {
         this.calculateFavArray();
-        console.log('Favorites: ' + favString);
+        if (this.debugComponent)
+          console.log('Favorites: ' + favString);
       });
     });
   }

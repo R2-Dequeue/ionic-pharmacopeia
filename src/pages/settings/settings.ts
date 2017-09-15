@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';// `asyncStorage` on pc
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
-
+  private debugComponent: boolean = false;
   public settings: any = { showBetaDocs: false };
 
   /**

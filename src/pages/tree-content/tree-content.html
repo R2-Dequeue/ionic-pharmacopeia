@@ -27,6 +27,6 @@
       {{ item.title }}
     </button>
   </ion-list>
-  <button (click)="logObject()" ion-button>Log</button>
+  <button *ngIf="debugComponent" (click)="logObject()" ion-button>Log</button>
 
 </ion-content>
