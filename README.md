@@ -1,26 +1,38 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
+## Operation Smile Library
 
-## How to use this template
+This is a cross-platform CMS for publishing rich text documents to mobile devices with real-time updates. Written for [Operation Smile](http://www.operationsmile.org/), documents are authored and published via a companion WYSIWYG web app to a Firebase database for real-time updates to this Ionic/Angular2/TypeScript app.
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+## Instructions
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+To deploy, this project needs credentials to a Firebase project. Create a `./src/assets/authenticate.ts` file. In the Firebase [console](https://console.firebase.google.com/) for your project click "Add Firebase to your web app" and copy and paste the definition of the `config` variable into `authenticate.ts` to end up with something like:
 
-### With the Ionic CLI:
-
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
-
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
+```TypeScript
+  export const firebaseConfig = {
+    apiKey: "...",
+    authDomain: "project-name.firebaseapp.com",
+    databaseURL: "https://project-name.firebaseio.com",
+    projectId: "project-name",
+    storageBucket: "project-name.appspot.com",
+    messagingSenderId: "..."
+  };
 ```
 
-Then, to run it, cd into `myBlank` and run:
+In the root project directory, run:
 
 ```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+$ npm install
 ```
 
-Substitute ios for android if not on a Mac.
+To install all project dependencies and populate the `./node_modules` subfolder.
 
+Run:
+
+```bash
+$ ionic serve -l
+```
+
+To test the app in a browser window.
+
+## License
+
+MIT
