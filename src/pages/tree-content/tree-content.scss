@@ -6,4 +6,15 @@ page-tree-content {
   p {
     margin: 0px;
   }
+
+  .ql-align-center {}
+
+  /* #quillHTML /deep/ .ql-font-serif */
+  .ql-font-serif {
+    font-family: serif;
+  }
+  
+  .ql-font-monospace {
+    font-family: monospace;
+  }
 }
